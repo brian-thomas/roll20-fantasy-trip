@@ -1,7 +1,7 @@
 .charsheet {
     background-color: #ddd;
-    width: 942px !important;
-    min-width: 942px; /* Set the min-width so that when the window is resized the look will stay consistant */
+    width: 800px !important;
+    min-width: 800px; /* Set the min-width so that when the window is resized the look will stay consistant */
     margin: 0 auto !important;
     line-height: 18px;
 }
@@ -104,20 +104,41 @@ span.sheet-med-font
     padding-right: 10px
 }
 .sheet-info-name,
-.sheet-info-name-med,
-.sheet-info-name-med-sm,
 .sheet-info-name-sm,
 span.sheet-info-name,
+span.sheet-info-name-med,
+span.sheet-info-name-long,
 input.sheet-info-name,
+input.sheet-info-name-med,
 input.sheet-info-name-long
 {
-        width: 140px;
+        width: 90px;
         font-size: 12px;
         margin-top: 1px;
         margin-left: 5px;
         margin-right: 5px;
         margin-bottom: 1px;
         text-align: center;
+}
+
+.sheet-info-name-sm,
+input[type=text].sheet-info-name-sm,
+span.sheet-info-name-sm
+{
+  width: 40px;
+}
+
+.sheet-info-name-med,
+input[type=text].sheet-info-name-med,
+span.sheet-info-name-med
+{
+  width: 140px;
+}
+
+.sheet-info-name-long,
+input.sheet-info-name-long
+{
+  width: 190px;
 }
 
 .repitem {
@@ -211,12 +232,21 @@ select.side-padding
 	padding-bottom: 5px;
 }
 
+.sheet-header-name,
+span.sheet-header-name {
+  font-size: 40px;
+  font-family: "Luminari, fantasy", fantasy, monospace;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+}
+
 .sheet-header-left {
-	width: 60%;
+	width: 51%;
 }
 
 .sheet-header-right {
-	width: 40%;
+	width: 49%;
 }
 
 .sheet-col-left {
@@ -232,7 +262,7 @@ select.side-padding
 }
 
 .sheet-logo {
-    width: 50%;
+    width: 60%;
     margin: 14px auto;
     display: block;
 }
