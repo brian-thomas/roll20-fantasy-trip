@@ -1,0 +1,57 @@
+<div class="sheet-flex sheet-bottom-padding">
+
+  <div class="sheet-header-left sheet-thin-border">
+
+    <div class="sheet-inline-flex sheet-bottom-padding">
+      <span class="sheet-bold-font">Name:</span>
+      <input type="text" class="sheet-text-align-left sheet-info-name-long" name="attr_character_name"/>
+    </div>
+
+    <div class="sheet-inline-flex">
+        <select class="sheet-info-name" name="attr_class">
+           <option selected="selected" value="none">--</option>
+           <option value="hero">Hero</option>
+           <option value="wizard">Wizard</option>
+         </select>
+         <input type="text" class="sheet-align-right sheet-info-name-med" name="attr_xp" value="0"/>
+         <input type="checkbox" class="sheet-next_attrib_xp_cost" name="attr_next_attrib_xp_cost" value="100" hidden="true" checked="true"/>
+         <input type="text" class="sheet-align-right inactive-color sheet-next-level-notify sheet-info-name-med" name="attr_next_attrib_xp" value="100" readonly="true"/>
+    </div>
+
+    <div class="sheet-inline-flex sheet-bottom-padding">
+      <span class="sheet-info-name">Class</span>
+      <span class="sheet-info-name-med">XP</span>
+      <span class="sheet-info-name-med">Raise Attrib XP Cost</span>
+    </div>
+
+    <div class="sheet-block">
+       <div class="sheet-inline-flex">
+           <select class="sheet-info-name" name="attr_race">
+              <option selected="selected" value="Human">Human</option>
+              <option value="Dwarf">Dwarf</option>
+              <option value="Elven">Elven</option>
+              <option value="Goblin">Goblin</option>
+              <option value="Halfling">Halfling</option>
+              <option value="HalfElven">Half Elven</option>
+              <option value="HalfGoblin">Half Goblin</option>
+              <option value="HalfDwarf">Half Dwarf</option>
+              <option value="HalfOrc">Half Orc</option>
+              <option value="Orc">Orc</option>
+           </select>
+           <input type="text" class="sheet-info-name" name="attr_background"/>
+           <input type="text" class="sheet-info-name" name="attr_job"/>
+       </div>
+       <div class="sheet-inline-flex">
+           <span class="sheet-info-name">Race</span>
+           <span class="sheet-info-name">Background</span>
+           <span class="sheet-info-name">Job</span>
+       </div>
+    </div>
+
+  </div>
+
+  <div class="sheet-header-right sheet-thin-border">
+    <img src="https://raw.githubusercontent.com/brian-thomas/roll20-fantasy-trip-charsheet/master/thefantasytrip_header.jpg" class="sheet-logo">
+  </div>
+
+</div>
