@@ -112,7 +112,7 @@ input.sheet-info-name,
 input.sheet-info-name-med,
 input.sheet-info-name-long
 {
-        width: 90px;
+        width: 88px;
         font-size: 12px;
         margin-top: 1px;
         margin-left: 5px;
@@ -125,20 +125,20 @@ input.sheet-info-name-long
 input[type=text].sheet-info-name-sm,
 span.sheet-info-name-sm
 {
-  width: 40px;
+  width: 38px;
 }
 
 .sheet-info-name-med,
 input[type=text].sheet-info-name-med,
 span.sheet-info-name-med
 {
-  width: 140px;
+  width: 138px;
 }
 
 .sheet-info-name-long,
 input.sheet-info-name-long
 {
-  width: 190px;
+  width: 290px;
 }
 
 .repitem {
@@ -214,7 +214,7 @@ input[type=number].sheet-thin-border
     padding-top: 5px;
 }
 .sheet-thick-border, .sheet-thick-border-no-pad {
-    border: 4px solid;
+    border: 3px solid;
     overflow: auto;
     margin-bottom: 10px;
 }
@@ -316,6 +316,11 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 /* Abilities */
+.sheet-ability-column-value
+{
+  width: 30%;
+}
+
 .sheet-ability-column-value,
 .sheet-ability-column-bonus
 {
@@ -424,6 +429,17 @@ input[type=number].sheet-ability-check-value {
     padding: 0px;
 }
 
+/* Combat */
+button.sheet-initiative,
+button.sheet-roll {
+	font-size: 12px!important;
+}
+
+button.sheet-initiative
+{
+	height: 3em;
+}
+
 /* Tabbing */
 /* Main Sheet Tabs */
 
@@ -522,7 +538,9 @@ input[type=number].sheet-talent-bonus-value
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.sheet-spell-name {
+.sheet-spell-name,
+.sheet-talent-name
+{
     width: 30%;
     font-weight: bold;
 		text-align: left;
@@ -533,7 +551,7 @@ input[type=number].sheet-talent-bonus-value
 .sheet-spell-range {
 	text-align: left;
 }
-k
+
 .sheet-spell-dice {
     width: 10%;
     font-weight: bold;
@@ -554,7 +572,9 @@ input[type=number].sheet-spell-prepared {
 .sheet-spell-range {
     width: 23%;
 }
-.sheet-spell-description {
+.sheet-spell-description,
+.sheet-talent-description
+{
     resize: vertical;
     box-sizing: border-box;
     border-radius: 0;
