@@ -61,7 +61,7 @@
 
    <div class="sheet-header-right sheet-padding">
      <div class="sheet-noborder">
-          <img src="https://raw.githubusercontent.com/brian-thomas/roll19-fantasy-trip-charsheet/master/thefantasytrip_header.jpg" alt="The Fantasy Trip" class="sheet-logo">
+          <img src="https://raw.githubusercontent.com/brian-thomas/roll20-fantasy-trip-charsheet/master/thefantasytrip_header.jpg" alt="The Fantasy Trip" class="sheet-logo">
      </div>
    </div>
 
@@ -233,13 +233,6 @@
           <h4>Weapons</h4>
           <div class="sheet-block">
             <div class="sheet-inline-flex">
-              <input type="checkbox" class="sheet-beserk_attack_enabled" name="attr_beserk_attack_enabled" value="1" hidden="true"/>
-              <input type="checkbox" class="sheet-cleave_attack_enabled" name="attr_cleave_attack_enabled" value="1" hidden="true"/>
-              <input type="checkbox" class="sheet-defense_attack_enabled" name="attr_defense_attack_enabled" value="1" hidden="true"/>
-              <input type="checkbox" class="sheet-press_attack_enabled" name="attr_press_attack_enabled" value="1" hidden="true"/>
-              <input type="checkbox" class="sheet-sneak_attack_enabled" name="attr_sneak_attack_enabled" value="1" hidden="true"/>
-              <input type="checkbox" class="sheet-strong_attack_enabled" name="attr_strong_attack_enabled" value="1" hidden="true"/>
-              <input type="number" name="attr_beserk_attack_mod" value="2" hidden="true"/>
 
               <span class="sheet-weapon-param-name sheet-rotate sheet-bold-font sheet-italic-font">Notches</span>
               <span class="sheet-weapon-name sheet-bold-font">Name</span>
@@ -250,41 +243,9 @@
               <span class="sheet-weapon-param-name sheet-bold-font">Dam Bonus</span>
               <span class="sheet-weapon-param-name sheet-bold-font">Stnd. Attack</span>
 
-              <div class="sheet-press_attack_section">
-                <span class="sheet-weapon-param-name sheet-bold-font">Press Attack</span>
-              </div>
-              <div class="sheet-defense_attack_section">
-                <span class="sheet-weapon-param-name sheet-bold-font">Defns. Attack</span>
-              </div>
-
-              <div class="sheet-beserk_attack_section">
-                <span class="sheet-weapon-param-name sheet-bold-font">Beserk Attack</span>
-              </div>
-
-              <div class="sheet-cleave_attack_section">
-                <span class="sheet-weapon-param-name sheet-bold-font">Cleave Attack</span>
-              </div>
-
-              <div class="sheet-strong_attack_section">
-                <span class="sheet-weapon-param-name sheet-bold-font">Strong Attack</span>
-              </div>
-
-              <div class="sheet-sneak_attack_section">
-                <span class="sheet-weapon-param-name sheet-bold-font">Sneak Attack</span>
-              </div>
-
             </div>
             <fieldset class="repeating_weapons">
               <div class="sheet-inline-flex">
-                <input type="checkbox" class="sheet-weapon_beserk_attack_enabled" name="attr_weapon_beserk_attack_enabled" value="1" hidden="true"/>
-                <input type="checkbox" class="sheet-weapon_cleave_attack_enabled" name="attr_weapon_cleave_attack_enabled" value="1" hidden="true"/>
-                <input type="checkbox" class="sheet-weapon_defense_attack_enabled" name="attr_weapon_defense_attack_enabled" value="1" hidden="true"/>
-                <input type="checkbox" class="sheet-weapon_press_attack_enabled" name="attr_weapon_press_attack_enabled" value="1" hidden="true"/>
-                <input type="checkbox" class="sheet-weapon_strong_attack_enabled" name="attr_weapon_strong_attack_enabled" value="1" hidden="true"/>
-                <input type="checkbox" class="sheet-weapon_sneak_attack_enabled" name="attr_weapon_sneak_attack_enabled" value="1" hidden="true"/>
-
-                <input name="attr_weapon_sneak_attack_bonus" value="[[@{sneak_attack_skill}+[[@{weapon_bonus}]]-[[@{weapon_notches}]]]]" hidden="true"/>
-                <input name="attr_weapon_sneak_attack_dam" value="0" hidden="true"/>
 
                 <select class="sheet-weapon-notches" name="attr_weapon_notches">
                   <option selected="selected" value="0">--</option>
@@ -293,7 +254,6 @@
                   <option value="3">3</option>
                 </select>
                 <input type="text" name="attr_weapon_name" class="weapon-name" data-i18n-placeholder="name"/>
-
                 <input type="number" name="attr_weapon_bonus" class="weapon-param sheet-purple-border" value="0"/>
 
                 <select class="weapon-param" name="attr_weapon_type">
@@ -327,35 +287,6 @@
 
                 <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_weapon_attack"
                         value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} Attack}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{critical=[[19 + @{weapon_attack_bonus}]]}} {{fumble=[[2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
-
-                <div class="sheet-weapon_press_attack_section">
-                  <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_press_attack"
-                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Press Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + 2 ]]}} {{critical=[[21 + @{weapon_attack_bonus}]]}} {{fumble=[[4+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] + 2 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
-                </div>
-                <div class="sheet-weapon_defense_attack_section">
-                  <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_defense_attack"
-                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Defensive Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] - 4]]}} {{critical=[[15 + @{weapon_attack_bonus}]]}} {{fumble=[[-2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] ]]}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] -4 [Attack], @{weapon_dam} + @{weapon_dam_bonus} [Damage] }}"></button>
-                </div>
-
-                <div class="sheet-weapon_beserk_attack_section">
-                  <button class="sheet-attack-button sheet-yellow-border" type="roll" name="roll_beserk_attack"
-                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Beserk Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] + [[@{beserk_attack_mod}]] ]]}} {{critical=[[19 + @{weapon_attack_bonus} + [[@{beserk_attack_mod}]] ]]}} {{fumble=[[2+@{weapon_attack_bonus} + [[@{beserk_attack_mod}]] ]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{beserk_attack_mod}]] ]]}}   {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] + [[@{beserk_attack_mod}]] ]]}}  {{math=1d20 + [[@{weapon_attack_bonus}]] + @{beserk_attack_mod} [Attk], @{weapon_dam} + @{weapon_dam_bonus} + @{beserk_attack_mod} [Dam] }}"></button>
-                </div>
-
-                <div class="sheet-weapon_cleave_attack_section">
-                  <button class="sheet-attack-button sheet-blue-border" type="roll" name="roll_cleave_attack"
-                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Cleave Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_bonus}]] ]]}} {{critical=[[19 + @{weapon_bonus}]]}} {{fumble=[[2+@{weapon_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}/2]]  ]]}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] + [[@{weapon_attack_bonus}/2]] ]]}} {{math=1d20 + [[@{weapon_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + [[@{weapon_attack_bonus}/2]] [Dam] }}"></button>
-                </div>
-
-                <div class="sheet-weapon_strong_attack_section">
-                  <button class="sheet-attack-button sheet-green-border" type="roll" name="roll_strong_attack"
-                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b> Strong Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_attack_bonus}]] ]]}} {{critical=[[19 + @{weapon_attack_bonus}]]}} {{fumble=[[2+@{weapon_attack_bonus}]] }} {{damage=[[@{weapon_dam} + [[@{weapon_dam_bonus}]] + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] ]]}} {{critdamage=[[@{weapon_dam} + [[@{weapon_dam}]] + [[@{weapon_dam}]] + [[@{weapon_dam}]] + [[@{weapon_dam_bonus}]] + [[@{weapon_dam_bonus}]] ]]}} {{math=1d20 + [[@{weapon_attack_bonus}]] [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_dam} + @{weapon_dam_bonus} [Dam] }}"></button>
-                </div>
-
-                <div class="sheet-weapon_sneak_attack_section">
-                  <button class="sheet-attack-button sheet-orange-border" type="roll" name="roll_sneak_attack"
-                          value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{weapon_name} <b>Sneak Attack</b>}} {{subheader=@{character_name}}} {{weapon=1}} {{attack=[[ 1d20 + [[@{weapon_sneak_attack_bonus}]] ]]}} {{critical=[[19 + @{weapon_sneak_attack_bonus}]]}} {{fumble=[[2+@{weapon_sneak_attack_bonus}]] }} {{damage=[[@{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam}]]}} {{critdamage=[[@{weapon_dam} + @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} + @{weapon_sneak_attack_dam} ]]}} {{math=1d20 + @{weapon_sneak_attack_bonus} [Attack], @{weapon_dam} + @{weapon_dam_bonus} + @{weapon_sneak_attack_dam} [Dam] }}"></button>
-                </div>
 
               </div>
             </fieldset>
@@ -409,16 +340,6 @@
             <div class="sheet-no-dice-spell">
               <button class="sheet-attack-button sheet-orange-border" type="roll" name="roll_cast_spell"
                       value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{spell_save_dc=@{spellcasting_dc} }} {{level=@{spell_iq}}} }} {{description=@{spelldescription} }}"></button>
-            </div>
-            <input type="checkbox" name="attr_is_adhoc_dice_spell" class="sheet-is-adhoc-dice-spell" value="1" hidden="True">
-            <div class="sheet-adhoc-dice-spell">
-              <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_cast_adhoc_spell"
-                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Adhoc Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{spell_save_dc=@{spellcasting_dc} }} {{spell_dice_enabled=1}} {{level=@{spell_iq}}} {{math=@{spell_dice}}} {{adhoc_cast=1}} {{roll1=[[@{spell_dice}]]}} {{description=@{spelldescription}}}"></button>
-            </div>
-            <input type="checkbox" name="attr_is_adhoc_no_dice_spell" class="sheet-adhoc-not-dice-spell" value="1" hidden="True">
-            <div class="sheet-adhoc-no-dice-spell">
-              <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_cast_adhoc_spell"
-                      value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Adhoc Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{spell_save_dc=@{spellcasting_dc} }} {{level=@{spell_iq}}} {{adhoc_cast=1}} {{description=@{spelldescription}}}"></button>
             </div>
             <textarea spellcheck="false" name="attr_spelldescription" class="sheet-spell-description" data-i18n-placeholder="description"></textarea>
           </div>
