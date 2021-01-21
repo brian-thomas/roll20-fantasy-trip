@@ -107,9 +107,11 @@ span.sheet-med-font
 .sheet-info-name-sm,
 span.sheet-info-name,
 span.sheet-info-name-med,
+span.sheet-info-name-med-long,
 span.sheet-info-name-long,
 input.sheet-info-name,
 input.sheet-info-name-med,
+input.sheet-info-name-med-long,
 input.sheet-info-name-long
 {
         width: 88px;
@@ -133,6 +135,13 @@ input[type=text].sheet-info-name-med,
 span.sheet-info-name-med
 {
   width: 138px;
+}
+
+.sheet-info-name-med-long,
+input.sheet-info-name-med-long,
+span.sheet-info-name-med-long
+{
+  width: 200px;
 }
 
 .sheet-info-name-long,
@@ -538,22 +547,39 @@ input[type=number].sheet-talent-bonus-value
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.sheet-spell-name,
+
 .sheet-talent-name
+input[type=text].sheet-talent-name
 {
-    width: 30%;
+    width: 40%;
     font-weight: bold;
 		text-align: left;
 }
 
-.sheet-spell-prepared,
+.sheet-armor-name,
+select.sheet-armor-name
+{
+    width: 100%;
+    font-weight: bold;
+		text-align: left;
+}
+
+.sheet-spell-name,
+input[type=text].sheet-spell-name,
+{
+    width: 33%;
+    font-weight: bold;
+		text-align: left;
+}
+
+.sheet-spell-type,
 .sheet-spell-duration,
 .sheet-spell-range {
 	text-align: left;
 }
 
 .sheet-spell-dice {
-    width: 10%;
+    width: 7%;
     font-weight: bold;
     text-align: left;
 }
@@ -572,43 +598,31 @@ input[type=number].sheet-spell-prepared {
 .sheet-spell-range {
     width: 23%;
 }
+
 .sheet-spell-description,
 .sheet-talent-description
 {
+    width: 100%;
     resize: vertical;
     box-sizing: border-box;
     border-radius: 0;
     height: 30px;
-    margin-bottom: 0;
+    margin: 1px;
     min-height: 20px;
 }
-.sheet-spells-per-level {
-    align-items: center;
-    font-weight: bold;
-    margin: 0 0 12px;
-}
-.sheet-spells-per-level > div {
-    align-items: center;
-    width: 82px;
-}
-.sheet-spells-per-level input[type=number] {
-    border-radius: 3px;
-    width: 2em;
-    padding: 1px 4px;
-    border: 1px solid #ccc;
-}
-.sheet-spellfilter, .sheet-hidden-spell-level {
+
+.sheet-spellfilter, .sheet-hidden-spell-iq {
     display: none;
 }
-.sheet-spellfilter[value="1"]:checked ~ div .sheet-hidden-spell-level[value="1"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="2"]:checked ~ div .sheet-hidden-spell-level[value="2"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="3"]:checked ~ div .sheet-hidden-spell-level[value="3"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="4"]:checked ~ div .sheet-hidden-spell-level[value="4"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="5"]:checked ~ div .sheet-hidden-spell-level[value="5"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="6"]:checked ~ div .sheet-hidden-spell-level[value="6"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="7"]:checked ~ div .sheet-hidden-spell-level[value="7"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="8"]:checked ~ div .sheet-hidden-spell-level[value="8"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="9"]:checked ~ div .sheet-hidden-spell-level[value="9"]:not(:checked) ~ .sheet-spellcontainer {
+.sheet-spellfilter[value="1"]:checked ~ div .sheet-hidden-spell-iq[value="1"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="2"]:checked ~ div .sheet-hidden-spell-iq[value="2"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="3"]:checked ~ div .sheet-hidden-spell-iq[value="3"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="4"]:checked ~ div .sheet-hidden-spell-iq[value="4"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="5"]:checked ~ div .sheet-hidden-spell-iq[value="5"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="6"]:checked ~ div .sheet-hidden-spell-iq[value="6"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="7"]:checked ~ div .sheet-hidden-spell-iq[value="7"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="8"]:checked ~ div .sheet-hidden-spell-iq[value="8"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="9"]:checked ~ div .sheet-hidden-spell-iq[value="9"]:not(:checked) ~ .sheet-spellcontainer {
     display: none;
 }
 .sheet-spell-filters {
@@ -679,7 +693,9 @@ select.sheet-weapon-notches
 }
 
 .sheet-weapon-param,
+.sheet-armor-param,
 input[type=text].sheet-weapon-param,
+input[type=number].sheet-armor-param,
 input[type=number].sheet-weapon-param
 {
 	width: 30px;

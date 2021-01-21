@@ -84,7 +84,7 @@
 
     <br/>
     <br/>
-    
+
     <div class="section-core">
       <div class="sheet-flex">
         <div class="sheet-header-left sheet-padding">
@@ -267,22 +267,23 @@
                 <input type="number" name="attr_weapon_attack_bonus" class="weapon-param inactive-color" value="[[@{weapon_type}+[[@{weapon_bonus}]]-[[@{weapon_notches}]]]]" disabled="true"/>
 
                 <select class="sheet-weapon-param" name="attr_weapon_dam_die">
-                  <option selected="selected" value="1d2">1d2</option>
-                  <option value="1d4">1d4</option>
+                  <option selected="selected" value="1d6-4">1d6-4</option>
+                  <option value="1d6-2">1d6-2</option>
+                  <option value="1d6-1">1d6-1</option>
                   <option value="1d6">1d6</option>
-                  <option value="1d8">1d8</option>
-                  <option value="1d10">1d10</option>
-                  <option value="1d12">1d12</option>
-                  <option value="2d4">2d4</option>
+                  <option value="1d6+1">1d6+1</option>
+                  <option value="1d6+2">1d6+2</option>
+                  <option value="2d6-2">2d6-2</option>
+                  <option value="2d6-1">2d6-1</option>
                   <option value="2d6">2d6</option>
-                  <option value="2d8">2d8</option>
-                  <option value="2d10">2d10</option>
-                  <option value="2d12">2d12</option>
+                  <option value="2d6+1">2d6+1</option>
+                  <option value="2d6+2">2d6+2</option>
+                  <option value="3d6-2">3d6-2</option>
+                  <option value="3d6-1">3d6-1</option>
                   <option value="3d6">3d6</option>
-                  <option value="3d8">3d8</option>
-                  <option value="3d10">3d10</option>
-                  <option value="3d12">3d12</option>
-                  <option value="2d20">2d20</option>
+                  <option value="3d6+1">3d6+1</option>
+                  <option value="3d6+2">3d6+2</option>
+                  <option value="3d6+3">3d6+3</option>
                 </select>
 
                 <input name="attr_weapon_dam" value="0" hidden="true"/>
@@ -299,8 +300,69 @@
     </div>
 
     <div class="section-magic">
-      <div class="sheet-thick-border">
+      <div class="sheet-thick-border sheet-spells">
         <h3>Spellcasting</h3>
+
+        <div class="sheet-spell-filters sheet-flex-between">
+          <span class="sheet-bold-font">Filter:</span>
+          <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="all" checked/>
+             <span data-i18n="all"></span>
+          </label>
+          <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="8"/>
+             <span>8</span>
+          </label>
+          <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="9"/>
+             <span>9</span>
+          </label>
+          <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="10"/>
+             <span>10</span>
+          </label>
+          <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="11"/>
+             <span>11</span>
+          </label>
+          <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="12"/>
+             <span>12</span>
+          </label>
+          <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="13"/>
+             <span>13</span>
+          </label>
+          <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="14"/>
+             <span>14</span>
+          </label>
+          <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="15"/>
+             <span>15</span>
+          </label>
+          <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="16"/>
+             <span>16</span>
+          </label>
+          <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="17"/>
+             <span>17</span>
+          </label>
+          <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="18"/>
+             <span>18</span>
+          </label>
+          <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="19"/>
+             <span>19</span>
+          </label>
+          <label class="sheet-filter-button">
+             <input type="radio" name="attr_spells_filter" value="20"/>
+             <span>20</span>
+          </label>
+        </div>
+
         <fieldset class="repeating_spells">
           <input type="checkbox" name="attr_spell_iq" class="sheet-hidden-spell-iq" value="8" checked="True"/>
           <input type="checkbox" name="attr_spell_iq" class="sheet-hidden-spell-iq" value="9"/>
@@ -316,9 +378,9 @@
           <input type="checkbox" name="attr_spell_iq" class="sheet-hidden-spell-iq" value="19"/>
           <input type="checkbox" name="attr_spell_iq" class="sheet-hidden-spell-iq" value="20"/>
           <div class="sheet-spellcontainer sheet-side-padding">
-            <input type="text" name="attr_spellname" class="sheet-bottom-line sheet-spell-name" data-i18n-placeholder="name"/>
+            <input type="text" name="attr_spellname" class="sheet-spell-name sheet-bottom-line" data-i18n-placeholder="spell name"/>
             <span class="sheet-left-pad"> IQ:</span>
-            <select class="sheet-info-name-sm sheet-align-right" name="attr_iq_needed">
+            <select class="sheet-info-name-sm sheet-align-right" name="attr_spell_iq">
               <option selected="selected" value="8">8</option>
               <option value="9">9</option>
               <option value="10">10</option>
@@ -334,7 +396,7 @@
               <option value="20">20</option>
             </select>
             <span class="sheet-left-pad">Dice:</span>
-            <input type="text" class="sheet-info3 sheet-align-right sheet-spell-dice" name="attr_spell_dice" value="">
+            <input type="text" class="sheet-align-right sheet-spell-dice" name="attr_spell_dice" value="">
             <input type="checkbox" name="attr_is_dice_spell" class="sheet-is-dice-spell" value="1" hidden="True">
             <div class="sheet-dice-spell">
               <button class="sheet-attack-button sheet-orange-border" type="roll" name="roll_cast_spell"
@@ -356,7 +418,90 @@
         <div class="sheet-flex">
           <div class="sheet-header-left sheet-padding">
             <div class="sheet-thin-border sheet-padding">
-              WORN
+            <h4>Worn / Ready</h4>
+              <div class="sheet-table sheet-fill-width sheet-padding">
+                <div class="sheet-table-row sheet-inline-flex sheet-bottom-pad">
+                  <div class="sheet-table-cell">
+                    <span class="sheet-bold-font sheet-info-name-med">Ready Weapon: </span>
+                  </div>
+                  <div class="sheet-table-cell">
+                    <input type="text" class="sheet-info-name-med-long" name="attr_ready_weapon"/>
+                  </div>
+                </div>
+                <div class="sheet-table-row sheet-inline-flex sheet-bottom-pad">
+                  <div class="sheet-table-cell">
+                    <span class="sheet-bold-font sheet-info-name-med">2nd Weapon: </span>
+                  </div>
+                  <div class="sheet-table-cell">
+                    <input type="text" class="sheet-info-name-med-long" name="attr_second_weapon"/>
+                  </div>
+                </div>
+                <div class="sheet-table-row sheet-inline-flex sheet-bottom-pad">
+                  <div class="sheet-table-cell">
+                      <span>&nbsp;</span>
+                  </div>
+                  <div class="sheet-table-cell">
+                      <span class="sheet-bold-font sheet-info-name-med">bonus</span>
+                  </div>
+                  <div class="sheet-table-cell">
+                      <span>&nbsp;</span>
+                  </div>
+                  <div class="sheet-table-cell sheet-left-pad">
+                      <span class="sheet-bold-font sheet-info-name-med">bonus</span>
+                  </div>
+                </div>
+                <div class="sheet-table-row sheet-inline-flex sheet-bottom-pad">
+                  <div class="sheet-table-cell sheet-center">
+                    <span class="sheet-bold-font sheet-info-name-med">Armor: </span>
+                  </div>
+                  <div class="sheet-table-cell">
+                    <select name="attr_armor" class="sheet-armor-name">
+                      <option selected="selected" value="none">Clothing</option>
+                      <option value="padded">Padded</option>
+                      <option value="leather">Leather</option>
+                      <option value="studded_leather">Std. Leather</option>
+                      <option value="scale">Scale</option>
+                      <option value="chain">Chain</option>
+                      <option value="half_plate">Half Plate</option>
+                      <option value="plate">Plate</option>
+                    </select>
+                  </div>
+                  <div class="sheet-table-cell">
+                    <input type="number" class="sheet-armor-param center sheet-purple-border" name="attr_armor_bonus" value="-1"/>
+                  </div>
+                  <div class="sheet-table-cell sheet-left-pad">
+                    <span class="sheet-bold-font sheet-info-name-sm">Shield: </span>
+                  </div>
+                  <div class="sheet-table-cell">
+                    <select name="attr_shield" class="sheet-armor-name">
+                      <option selected="selected" value="none">None</option>
+                      <option value="small_shield">Small Shield</option>
+                      <option value="large_shield">Large Shield</option>
+                      <option value="tower_shield">Tower Shield</option>
+                    </select>
+                  </div>
+                  <div class="sheet-table-cell">
+                      <input type="number" class="sheet-armor-param center sheet-purple-border" name="attr_shield_bonus" value="0"/>
+                  </div>
+                </div>
+                <div class="sheet-table-row sheet-inline-flex sheet-bottom-pad">
+                  <div class="sheet-table-cell">
+                    <span class="sheet-bold-font sheet-info-name-med">Belt: </span>
+                  </div>
+                  <div class="sheet-table-cell">
+                    <input type="text" class="sheet-info-name-med-long" name="attr_belt"/>
+                  </div>
+                </div>
+                <div class="sheet-table-row sheet-inline-flex sheet-bottom-pad">
+                  <div class="sheet-table-cell">
+                    <span class="sheet-bold-font sheet-info-name-med">Belt Pouch: </span>
+                  </div>
+                  <div class="sheet-table-cell">
+                    <input type="text" class="sheet-info-name-med-long" name="attr_belt_pouch"/>
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
           <div class="sheet-header-right sheet-padding">
