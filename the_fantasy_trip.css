@@ -462,9 +462,11 @@ input.sheet-tab99:checked ~ div[class^="sheet-section"] {
 
 input.sheet-tab1:checked ~ div.sheet-section-core,
 input.sheet-tab2:checked ~ div.sheet-section-combat,
-input.sheet-tab3:checked ~ div.sheet-section-magic,
-input.sheet-tab4:checked ~ div.sheet-section-inventory,
-input.sheet-tab5:checked ~ div.sheet-section-notes {
+input.sheet-tab3:checked ~ div.sheet-section-languages,
+input.sheet-tab4:checked ~ div.sheet-section-magic,
+input.sheet-tab5:checked ~ div.sheet-section-inventory,
+input.sheet-tab6:checked ~ div.sheet-section-notes
+{
 	display: block;
 }
 
@@ -502,16 +504,20 @@ input.sheet-tab2:checked + span.sheet-tab2,
 input.sheet-tab3:checked + span.sheet-tab3,
 input.sheet-tab4:checked + span.sheet-tab4,
 input.sheet-tab5:checked + span.sheet-tab5,
+input.sheet-tab6:checked + span.sheet-tab6,
 input.sheet-tab99:checked + span.sheet-tab99 {
         background: #ab8b57;
         color: white;
         border-radius: 4px;
 }
 
-input.sheet-talentname {
-	width: inherit;
+
+.sheet-talent-name,
+input.sheet-talent-name {
+	width: 30%;
 	font-weight: bold;
 	overflow-x: auto;
+  text-align: left;
 }
 
 input.sheet-talent-points-overspent[value="0"]:checked ~ span.sheet-talent-points-overspend-notify
@@ -524,6 +530,39 @@ input[type=number].sheet-talent-bonus-value
 {
     height: 22px;
     width: 30px;
+}
+
+/* Languages */
+.sheet-languages .repitem {
+    margin: 0;
+    width: 32.0%;
+    display: block;
+}
+
+.sheet-langcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+    align-items: center;
+    border: 2px solid black;
+    padding: 2px;
+    justify-content: flex-start;
+    align-content: start;
+}
+
+.sheet-languages .repcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+.sheet-language-name,
+input.sheet-language-name {
+	width: 60%;
+	font-weight: bold;
+	overflow-x: auto;
+  text-align: left;
 }
 
 /* Spells */
