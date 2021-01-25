@@ -162,6 +162,10 @@ input.sheet-info-name-long
     justify-content: space-evenly;
 }
 
+.sheet-flex-simple {
+  display: flex;
+}
+
 .sheet-center,
 button.sheet-center,
 input.sheet-center,
@@ -235,6 +239,11 @@ select.side-padding
 {
   padding-left: 5px;
 	padding-right: 5px;
+}
+
+.sheet-top-padding
+{
+  padding-top: 15px;
 }
 
 .sheet-bottom-padding, .sheet-noborder, .sheet-thick-border {
@@ -858,14 +867,30 @@ input.sheet-weapon_strong_attack_enabled:checked ~ div.sheet-weapon_strong_attac
 	background: #000;
 	height: 1px;
 }
-.sheet-item-name, .sheet-container-item {
+.sheet-item-name,
+.sheet-item-name-header,
+input[type=text].sheet-item-name
+{
   text-align: left;
 }
-.sheet-item-dex {
+
+.sheet-item-weight,
+.sheet-item-weight-header
+{
   text-align: center;
-	width: 2px;
+	width: 40px;
 }
-.sheet-item-name-header, .sheet-item-name, .sheet-container-item {
+
+.sheet-item-name-header,
+.sheet-item-weight-header
+{
+  border: 0px;
+  font-style: italic;
+}
+
+.sheet-item-name,
+.sheet-item-weight
+{
 	font-weight: bold;
 	font-size: 17px
 }
@@ -879,11 +904,21 @@ input[type=text].sheet-worn-name
 	width: 100px;
 }
 
-.sheet-item-name-header, .sheet-item-name {
-	width: 250px;
+.sheet-item-name-header,
+.sheet-item-name,
+span.item-name,
+input[type=text].sheet-item-name
+{
+	width: 315px;
 }
-.sheet-container-item {
-	width: 240px;
+
+.sheet-med-textarea {
+	height: 263px;
+	width:  380px;
+}
+
+.sheet-lrg-textarea {
+	height: 450px;
 }
 
 div.sheet-no-sack1-slots,

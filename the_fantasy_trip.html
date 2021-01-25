@@ -111,7 +111,7 @@
                <span class="sheet-left-pad">XP Required:</span>
                <input type="number" name="attr_attrib_xp_cost" class="sheet-info-name sheet-inactive-color" value="8000" readonly="True"/>
              </div>
-             <div class="sheet-block sheet-thin-border">
+             <div class="sheet-block sheet-thin-border sheet-top-padding">
                <div class="sheet-flex">
                  <div class="sheet-ability-column-value">
                    <span class="sheet-big-font">ST</span>
@@ -470,40 +470,40 @@
             <h4>Worn / Ready</h4>
               <div class="sheet-table sheet-fill-width sheet-padding">
                 <div class="sheet-table-row sheet-inline-flex sheet-bottom-pad">
-                  <div class="sheet-table-cell">
+                  <div class="">
                     <span class="sheet-bold-font sheet-info-name-med">Ready Weapon: </span>
                   </div>
-                  <div class="sheet-table-cell">
+                  <div class="">
                     <input type="text" class="sheet-info-name-med-long" name="attr_ready_weapon"/>
                   </div>
                 </div>
                 <div class="sheet-table-row sheet-inline-flex sheet-bottom-pad">
-                  <div class="sheet-table-cell">
+                  <div class="">
                     <span class="sheet-bold-font sheet-info-name-med">2nd Weapon: </span>
                   </div>
-                  <div class="sheet-table-cell">
+                  <div class="">
                     <input type="text" class="sheet-info-name-med-long" name="attr_second_weapon"/>
                   </div>
                 </div>
                 <div class="sheet-table-row sheet-inline-flex sheet-bottom-pad">
-                  <div class="sheet-table-cell">
+                  <div class="">
                       <span>&nbsp;</span>
                   </div>
-                  <div class="sheet-table-cell">
+                  <div class="">
                       <span class="sheet-bold-font sheet-info-name-med">bonus</span>
                   </div>
-                  <div class="sheet-table-cell">
+                  <div class="">
                       <span>&nbsp;</span>
                   </div>
-                  <div class="sheet-table-cell sheet-left-pad">
+                  <div class=" sheet-left-pad">
                       <span class="sheet-bold-font sheet-info-name-med">bonus</span>
                   </div>
                 </div>
                 <div class="sheet-table-row sheet-inline-flex sheet-bottom-pad">
-                  <div class="sheet-table-cell sheet-center">
+                  <div class=" sheet-center">
                     <span class="sheet-bold-font sheet-info-name-med">Armor: </span>
                   </div>
-                  <div class="sheet-table-cell">
+                  <div class="">
                     <select name="attr_armor" class="sheet-armor-name">
                       <option selected="selected" value="none">Clothing</option>
                       <option value="padded">Padded</option>
@@ -515,13 +515,13 @@
                       <option value="plate">Plate</option>
                     </select>
                   </div>
-                  <div class="sheet-table-cell">
+                  <div class="">
                     <input type="number" class="sheet-armor-param center sheet-purple-border" name="attr_armor_bonus" value="-1"/>
                   </div>
-                  <div class="sheet-table-cell sheet-left-pad">
+                  <div class=" sheet-left-pad">
                     <span class="sheet-bold-font sheet-info-name-sm">Shield: </span>
                   </div>
-                  <div class="sheet-table-cell">
+                  <div class="">
                     <select name="attr_shield" class="sheet-armor-name">
                       <option selected="selected" value="none">None</option>
                       <option value="small_shield">Small Shield</option>
@@ -529,33 +529,108 @@
                       <option value="tower_shield">Tower Shield</option>
                     </select>
                   </div>
-                  <div class="sheet-table-cell">
+                  <div class="">
                       <input type="number" class="sheet-armor-param center sheet-purple-border" name="attr_shield_bonus" value="0"/>
                   </div>
                 </div>
                 <div class="sheet-table-row sheet-inline-flex sheet-bottom-pad">
-                  <div class="sheet-table-cell">
+                  <div class="">
                     <span class="sheet-bold-font sheet-info-name-med">Belt: </span>
                   </div>
-                  <div class="sheet-table-cell">
+                  <div class="">
                     <input type="text" class="sheet-info-name-med-long" name="attr_belt"/>
                   </div>
                 </div>
                 <div class="sheet-table-row sheet-inline-flex sheet-bottom-pad">
-                  <div class="sheet-table-cell">
+                  <div class="">
                     <span class="sheet-bold-font sheet-info-name-med">Belt Pouch: </span>
                   </div>
-                  <div class="sheet-table-cell">
+                  <div class="">
                     <input type="text" class="sheet-info-name-med-long" name="attr_belt_pouch"/>
                   </div>
                 </div>
 
               </div>
             </div>
+            <div class="sheet-thin-border sheet-padding">
+              <h4>Non-Encumbering Items</h4>
+              <textarea class="sheet-med-textarea" spellcheck="false" name="attr_non_encumber_items" data-i18n-placeholder="non-encumbering items"></textarea>
+            </div>
           </div>
           <div class="sheet-header-right sheet-padding">
             <div class="sheet-thin-border sheet-padding">
-                BACKPACK
+              <h4>Backpack</h4>
+              <div class="table sheet-fill-width">
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell"><input type="text" class="sheet-item-name-header sheet-inactive-color" value="Item" readonly="True"/></div>
+                  <div class="table-cell"><input type="text" class="sheet-item-weight-header sheet-inactive-color" value="Wgt" readonly="True"></div>
+                </div>
+                <div class="table-row sheet-table-sep-row"></div>
+                <div class="table-row sheet-table-sep-row"></div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell"><input name="attr_backpack_slot-1" type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell"><input name="attr_backpack_slot-1-wgt" type="number" value="0" class="sheet-item-weight"/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell"><input name="attr_backpack_slot-2" type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell"><input name="attr_backpack_slot-2-wgt" type="number" value="" class="sheet-item-weight"/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell"><input name="attr_backpack_slot-3" type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell"><input name="attr_backpack_slot-3-wgt" type="number" value="" class="sheet-item-weight"/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell"><input name="attr_backpack_slot-4" type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell"><input name="attr_backpack_slot-4-wgt" type="number" value="" class="sheet-item-weight"/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell"><input name="attr_backpack_slot-5" type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell"><input name="attr_backpack_slot-5-wgt" type="number" value="" class="sheet-item-weight"/></div>
+                </div>
+                <div class="table-row sheet-table-sep-row"></div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell"><input name="attr_backpack_slot-6" type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell"><input name="attr_backpack_slot-6-wgt" type="number" value="" class="sheet-item-weight"/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell"><input name="attr_backpack_slot-7" type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell"><input name="attr_backpack_slot-7-wgt" type="number" value="" class="sheet-item-weight"/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell"><input name="attr_backpack_slot-8" type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell"><input name="attr_backpack_slot-8-wgt" type="number" value="" class="sheet-item-weight"/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell"><input name="attr_backpack_slot-9" type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell"><input name="attr_backpack_slot-9-wgt" type="number" value="" class="sheet-item-weight"/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell"><input name="attr_backpack_slot-10" type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell"><input name="attr_backpack_slot-10-wgt" type="number" value="" class="sheet-item-weight"/></div>
+                </div>
+                <div class="table-row sheet-table-sep-row"></div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell"><input name="attr_backpack_slot-11" type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell"><input name="attr_backpack_slot-11-wgt" type="number" value="" class="sheet-item-weight"/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell"><input name="attr_backpack_slot-12" type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell"><input name="attr_backpack_slot-12-wgt" type="number" value="" class="sheet-item-weight"/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell"><input name="attr_backpack_slot-13" type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell"><input name="attr_backpack_slot-13-wgt" type="number" value="" class="sheet-item-weight"/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell"><input name="attr_backpack_slot-14" type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell"><input name="attr_backpack_slot-14-wgt" type="number" value="" class="sheet-item-weight"/></div>
+                </div>
+                <div class="table-row sheet-flex-simple">
+                  <div class="table-cell"><input name="attr_backpack_slot-15" type="text" class="sheet-item-name"/></div>
+                  <div class="table-cell"><input name="attr_backpack_slot-15-wgt" type="number" value="" class="sheet-item-weight"/></div>
+                </div>
+                <div class="table-row sheet-table-sep-row"></div>
+              </div>
             </div>
           </div>
         </div>
