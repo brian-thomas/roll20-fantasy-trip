@@ -107,9 +107,11 @@ span.sheet-med-font
 .sheet-info-name-sm,
 span.sheet-info-name,
 span.sheet-info-name-med,
+span.sheet-info-name-med-long,
 span.sheet-info-name-long,
 input.sheet-info-name,
 input.sheet-info-name-med,
+input.sheet-info-name-med-long,
 input.sheet-info-name-long
 {
         width: 88px;
@@ -135,6 +137,13 @@ span.sheet-info-name-med
   width: 138px;
 }
 
+.sheet-info-name-med-long,
+input.sheet-info-name-med-long,
+span.sheet-info-name-med-long
+{
+  width: 200px;
+}
+
 .sheet-info-name-long,
 input.sheet-info-name-long
 {
@@ -151,6 +160,10 @@ input.sheet-info-name-long
 .sheet-flex-between {
     display: flex;
     justify-content: space-evenly;
+}
+
+.sheet-flex-simple {
+  display: flex;
 }
 
 .sheet-center,
@@ -228,6 +241,11 @@ select.side-padding
 	padding-right: 5px;
 }
 
+.sheet-top-padding
+{
+  padding-top: 15px;
+}
+
 .sheet-bottom-padding, .sheet-noborder, .sheet-thick-border {
 	padding-bottom: 5px;
 }
@@ -262,8 +280,8 @@ span.sheet-header-name {
 }
 
 .sheet-logo {
-    width: 60%;
-    margin: 14px auto;
+    width: 80%;
+    margin: 2px auto;
     display: block;
 }
 
@@ -453,9 +471,11 @@ input.sheet-tab99:checked ~ div[class^="sheet-section"] {
 
 input.sheet-tab1:checked ~ div.sheet-section-core,
 input.sheet-tab2:checked ~ div.sheet-section-combat,
-input.sheet-tab3:checked ~ div.sheet-section-magic,
-input.sheet-tab4:checked ~ div.sheet-section-inventory,
-input.sheet-tab5:checked ~ div.sheet-section-notes {
+input.sheet-tab3:checked ~ div.sheet-section-languages,
+input.sheet-tab4:checked ~ div.sheet-section-magic,
+input.sheet-tab5:checked ~ div.sheet-section-inventory,
+input.sheet-tab6:checked ~ div.sheet-section-notes
+{
 	display: block;
 }
 
@@ -493,16 +513,20 @@ input.sheet-tab2:checked + span.sheet-tab2,
 input.sheet-tab3:checked + span.sheet-tab3,
 input.sheet-tab4:checked + span.sheet-tab4,
 input.sheet-tab5:checked + span.sheet-tab5,
+input.sheet-tab6:checked + span.sheet-tab6,
 input.sheet-tab99:checked + span.sheet-tab99 {
         background: #ab8b57;
         color: white;
         border-radius: 4px;
 }
 
-input.sheet-talentname {
-	width: inherit;
+
+.sheet-talent-name,
+input.sheet-talent-name {
+	width: 30%;
 	font-weight: bold;
 	overflow-x: auto;
+  text-align: left;
 }
 
 input.sheet-talent-points-overspent[value="0"]:checked ~ span.sheet-talent-points-overspend-notify
@@ -515,6 +539,39 @@ input[type=number].sheet-talent-bonus-value
 {
     height: 22px;
     width: 30px;
+}
+
+/* Languages */
+.sheet-languages .repitem {
+    margin: 0;
+    width: 32.0%;
+    display: block;
+}
+
+.sheet-langcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+    align-items: center;
+    border: 2px solid black;
+    padding: 2px;
+    justify-content: flex-start;
+    align-content: start;
+}
+
+.sheet-languages .repcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+.sheet-language-name,
+input.sheet-language-name {
+	width: 60%;
+	font-weight: bold;
+	overflow-x: auto;
+  text-align: left;
 }
 
 /* Spells */
@@ -538,22 +595,39 @@ input[type=number].sheet-talent-bonus-value
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.sheet-spell-name,
+
 .sheet-talent-name
+input[type=text].sheet-talent-name
 {
-    width: 30%;
+    width: 40%;
     font-weight: bold;
 		text-align: left;
 }
 
-.sheet-spell-prepared,
+.sheet-armor-name,
+select.sheet-armor-name
+{
+    width: 100%;
+    font-weight: bold;
+		text-align: left;
+}
+
+.sheet-spell-name,
+input[type=text].sheet-spell-name,
+{
+    width: 33%;
+    font-weight: bold;
+		text-align: left;
+}
+
+.sheet-spell-type,
 .sheet-spell-duration,
 .sheet-spell-range {
 	text-align: left;
 }
 
 .sheet-spell-dice {
-    width: 10%;
+    width: 7%;
     font-weight: bold;
     text-align: left;
 }
@@ -572,43 +646,31 @@ input[type=number].sheet-spell-prepared {
 .sheet-spell-range {
     width: 23%;
 }
+
 .sheet-spell-description,
 .sheet-talent-description
 {
+    width: 100%;
     resize: vertical;
     box-sizing: border-box;
     border-radius: 0;
     height: 30px;
-    margin-bottom: 0;
+    margin: 1px;
     min-height: 20px;
 }
-.sheet-spells-per-level {
-    align-items: center;
-    font-weight: bold;
-    margin: 0 0 12px;
-}
-.sheet-spells-per-level > div {
-    align-items: center;
-    width: 82px;
-}
-.sheet-spells-per-level input[type=number] {
-    border-radius: 3px;
-    width: 2em;
-    padding: 1px 4px;
-    border: 1px solid #ccc;
-}
-.sheet-spellfilter, .sheet-hidden-spell-level {
+
+.sheet-spellfilter, .sheet-hidden-spell-iq {
     display: none;
 }
-.sheet-spellfilter[value="1"]:checked ~ div .sheet-hidden-spell-level[value="1"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="2"]:checked ~ div .sheet-hidden-spell-level[value="2"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="3"]:checked ~ div .sheet-hidden-spell-level[value="3"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="4"]:checked ~ div .sheet-hidden-spell-level[value="4"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="5"]:checked ~ div .sheet-hidden-spell-level[value="5"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="6"]:checked ~ div .sheet-hidden-spell-level[value="6"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="7"]:checked ~ div .sheet-hidden-spell-level[value="7"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="8"]:checked ~ div .sheet-hidden-spell-level[value="8"]:not(:checked) ~ .sheet-spellcontainer,
-.sheet-spellfilter[value="9"]:checked ~ div .sheet-hidden-spell-level[value="9"]:not(:checked) ~ .sheet-spellcontainer {
+.sheet-spellfilter[value="1"]:checked ~ div .sheet-hidden-spell-iq[value="1"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="2"]:checked ~ div .sheet-hidden-spell-iq[value="2"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="3"]:checked ~ div .sheet-hidden-spell-iq[value="3"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="4"]:checked ~ div .sheet-hidden-spell-iq[value="4"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="5"]:checked ~ div .sheet-hidden-spell-iq[value="5"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="6"]:checked ~ div .sheet-hidden-spell-iq[value="6"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="7"]:checked ~ div .sheet-hidden-spell-iq[value="7"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="8"]:checked ~ div .sheet-hidden-spell-iq[value="8"]:not(:checked) ~ .sheet-spellcontainer,
+.sheet-spellfilter[value="9"]:checked ~ div .sheet-hidden-spell-iq[value="9"]:not(:checked) ~ .sheet-spellcontainer {
     display: none;
 }
 .sheet-spell-filters {
@@ -679,7 +741,9 @@ select.sheet-weapon-notches
 }
 
 .sheet-weapon-param,
+.sheet-armor-param,
 input[type=text].sheet-weapon-param,
+input[type=number].sheet-armor-param,
 input[type=number].sheet-weapon-param
 {
 	width: 30px;
@@ -803,14 +867,30 @@ input.sheet-weapon_strong_attack_enabled:checked ~ div.sheet-weapon_strong_attac
 	background: #000;
 	height: 1px;
 }
-.sheet-item-name, .sheet-container-item {
+.sheet-item-name,
+.sheet-item-name-header,
+input[type=text].sheet-item-name
+{
   text-align: left;
 }
-.sheet-item-dex {
+
+.sheet-item-weight,
+.sheet-item-weight-header
+{
   text-align: center;
-	width: 2px;
+	width: 40px;
 }
-.sheet-item-name-header, .sheet-item-name, .sheet-container-item {
+
+.sheet-item-name-header,
+.sheet-item-weight-header
+{
+  border: 0px;
+  font-style: italic;
+}
+
+.sheet-item-name,
+.sheet-item-weight
+{
 	font-weight: bold;
 	font-size: 17px
 }
@@ -824,11 +904,21 @@ input[type=text].sheet-worn-name
 	width: 100px;
 }
 
-.sheet-item-name-header, .sheet-item-name {
-	width: 250px;
+.sheet-item-name-header,
+.sheet-item-name,
+span.item-name,
+input[type=text].sheet-item-name
+{
+	width: 315px;
 }
-.sheet-container-item {
-	width: 240px;
+
+.sheet-med-textarea {
+	height: 263px;
+	width:  380px;
+}
+
+.sheet-lrg-textarea {
+	height: 450px;
 }
 
 div.sheet-no-sack1-slots,
