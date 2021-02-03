@@ -604,10 +604,24 @@ input[type=text].sheet-talent-name
 		text-align: left;
 }
 
+.sheet-gear-left {
+  width: 55%;
+}
+
+.sheet-gear-right {
+  width: 45%;
+}
+
+.sheet-gear-name,
+input[type=text].sheet-gear-name
+{
+  text-align: left;
+}
+
 .sheet-armor-name,
 select.sheet-armor-name
 {
-    width: 100%;
+    width: 105px;
     font-weight: bold;
 		text-align: left;
 }
@@ -891,7 +905,6 @@ input[type=text].sheet-item-name
 .sheet-item-name,
 .sheet-item-weight
 {
-	font-weight: bold;
 	font-size: 17px
 }
 .sheet-worn-name {
@@ -909,7 +922,7 @@ input[type=text].sheet-worn-name
 span.item-name,
 input[type=text].sheet-item-name
 {
-	width: 315px;
+	width: 285px;
 }
 
 .sheet-med-textarea {
