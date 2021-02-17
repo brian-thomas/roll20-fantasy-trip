@@ -31,14 +31,14 @@
          </select>
 
          <input type="text" class="sheet-align-right sheet-info-name" name="attr_xp" value="0"/>
-         <input type="text" class="sheet-align-right inactive-color sheet-next-level-notify sheet-info-name" name="attr_next_attrib_xp" value="0" readonly="true"/>
+         <input type="text" class="sheet-align-right inactive-color sheet-next-level-notify sheet-info-name" name="attr_xp_required" value="0" readonly="true"/>
        </div>
 
        <div class="sheet-inline-flex sheet-bottom-padding">
          <span class="sheet-info-name">Class</span>
          <span class="sheet-info-name">Race</span>
          <span class="sheet-info-name">XP</span>
-         <span class="sheet-info-name">Next Attr XP Cost</span>
+         <span class="sheet-info-name">XP Required</span>
        </div>
 
        <div class="sheet-inline-flex">
@@ -58,10 +58,12 @@
         <div class="sheet-thin-border sheet-padding">
           <h4>Talent, Language, Spell Costs</h4>
           <div class="sheet-center">
-            <span class="sheet-left-pad">Unspent Points:<span>
-            <input type="number" name="attr_tls_iq_unspent" class="sheet-info-name-sm sheet-inactive-color sheet-bold-font" value="0"/>
-            <span class="sheet-left-pad">XP Required:<span>
-              <input type="number" name="attr_tls_xp_cost" class="sheet-info-name-sm sheet-inactive-color sheet-bold-font" value="0"/>
+            <span class="sheet-left-pad">Start IQ:<span>
+            <input type="number" name="attr_iq_start" class="sheet-info-name-sm sheet-bold-font" value="8"/>
+            <span class="sheet-left-pad">Unspent Pts:<span>
+            <input type="number" name="attr_tls_iq_unspent" class="sheet-info-name-sm sheet-inactive-color sheet-bold-font" value="0" readonly="true"/>
+            <span class="sheet-left-pad">XP Req:<span>
+            <input type="number" name="attr_tls_xp_cost" class="sheet-info-name-sm sheet-inactive-color sheet-bold-font" value="0" readonly="true"/>
           </div>
         </div>
 
@@ -106,10 +108,12 @@
                <h3>Attributes</h3>
              </div>
              <div class="sheet-flex-between sheet-center sheet-bottom-padding">
-               <span>Total Attibutes:</span>
+               <span>Attrib Total:</span>
                <input type="number" name="attr_total_attribs" class="sheet-info-name-sm sheet-inactive-color" value="24" readonly="True"/>
                <span class="sheet-left-pad">XP Required:</span>
                <input type="number" name="attr_attrib_xp_spent" class="sheet-info-name sheet-inactive-color" value="8000" readonly="True"/>
+               <span>Next Attrib XP Cost:</span>
+               <input type="text" class="sheet-align-right inactive-color sheet-next-level-notify sheet-info-name" name="attr_next_attrib_xp" value="0" readonly="true"/>
              </div>
              <div class="sheet-block sheet-thin-border sheet-top-padding">
                <div class="sheet-flex">
@@ -215,11 +219,19 @@
                   <input type="text" name="attr_talentname" class="sheet-bottom-line sheet-talent-name"/>
                   <span class="left-pad">Cost:</span>
                   <select class="sheet-info-name-sm sheet-bold-font sheet-align-right" name="attr_talent_cost">
+                    <option value="0">0</option>
                     <option selected="selected" value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
                   </select>
                   <span class="left-pad">IQ req:</span>
                   <select class="sheet-info-name-sm sheet-align-right sheet-bold-font" name="attr_talent_iq_required">
@@ -660,10 +672,9 @@
 <script type="text/worker">
 
   // Attribute/XP stuff
-  on(`sheet:opened change:st change:st_bonus change:dx change:dx_bonus change:iq change:iq_bonus change:xp`, () => {
-    getAttrs(['st', 'dx', 'iq', 'xp', 'st_bonus', 'dx_bonus', 'iq_bonus'], v => {
+  on(`sheet:opened change:st change:st_bonus change:dx change:dx_bonus change:iq change:iq_bonus`, () => {
+    getAttrs(['st', 'dx', 'iq', 'st_bonus', 'dx_bonus', 'iq_bonus'], v => {
 
-      //const statrank = [1,3,5,7,9,11,13,15,17,19,21,23,25].findIndex(rank => score <= rank);
       const st = parseInt(v.st) || 0;
       const st_bonus = parseInt(v.st_bonus) || 0;
 
@@ -673,7 +684,6 @@
       const iq = parseInt(v.iq) || 0;
       const iq_bonus = parseInt(v.iq_bonus) || 0;
 
-      const xp = parseInt(v.xp) || 0;
       const total_attribs = iq + st + dx;
       const next_xp_idx = total_attribs - 32;
       const next_xp_cost = [100, 200, 300, 600, 1000, 2000, 4000];
@@ -687,7 +697,6 @@
       setting["adj_st"] = st + st_bonus;
       setting["adj_dx"] = dx + dx_bonus;
       setting["adj_iq"] = iq + iq_bonus;
-
 
       setAttrs(setting);
     });
@@ -761,19 +770,19 @@
   });
 
   // XP for Talents, Spells, Languages
-  on(`change:total_talent_cost change:num_lang change:num_spells change:iq change:class` , function () {
-    getAttrs(['total_talent_cost', 'num_spells', 'num_lang', 'class', 'iq'], v => {
+  on(`change:total_talent_cost change:num_lang change:num_spells change:iq change:class change:iq_start` , function () {
+    getAttrs(['total_talent_cost', 'num_spells', 'num_lang', 'class', 'iq_start'], v => {
 
       const c_class = v.class.trim();
       const is_wizard = (c_class === 'wizard') ? 1 : 0;
       const talent_iq_cost = parseInt(v.total_talent_cost) || 0;
       const spell_iq_cost = parseInt(v.num_spells) || 0;
       const lang_iq_cost = parseInt(v.num_lang) || 0;
-      const iq = parseInt(v.iq) || 0;
+      const iq_start = parseInt(v.iq_start) || 0;
 
       // calculate XP needed
       var xp_required = 0;
-      var iq_available = iq;
+      var iq_available = iq_start;
 
       // talent xp cost
       iq_available -= talent_iq_cost;
@@ -802,5 +811,17 @@
       setAttrs(settings);
 
     });
+
   });
+
+  on(`change:tls_xp_cost change:attrib_xp_spent` , function () {
+    getAttrs(['tls_xp_cost', 'attrib_xp_spent'], v => {
+      const attrib_xp_cost = parseInt(v.attrib_xp_spent) || 0;
+      const tls_xp_cost = parseInt(v.tls_xp_cost) || 0;
+
+      setAttrs({'xp_required': tls_xp_cost + attrib_xp_cost})
+
+    });
+  });
+
 </script>
