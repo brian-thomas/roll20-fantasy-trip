@@ -57,10 +57,12 @@
 
         <div class="sheet-thin-border sheet-padding">
           <h4>Talent, Language, Spell Costs</h4>
-          <span class="sheet-left-pad">IQ allows:<span>
-          <input type="number" name="attr_tls_iq_allotment" class="sheet-info-name-sm sheet-inactive-color sheet-bold-font" value="@{iq}"/>
-          <span class="sheet-left-pad">XP Required:<span>
-          <input type="number" name="attr_tls_xp_cost" class="sheet-info-name-sm sheet-inactive-color sheet-bold-font" value="0"/>
+          <div class="sheet-center">
+            <span class="sheet-left-pad">Unspent Points:<span>
+            <input type="number" name="attr_tls_iq_unspent" class="sheet-info-name-sm sheet-inactive-color sheet-bold-font" value="0"/>
+            <span class="sheet-left-pad">XP Required:<span>
+              <input type="number" name="attr_tls_xp_cost" class="sheet-info-name-sm sheet-inactive-color sheet-bold-font" value="0"/>
+          </div>
         </div>
 
       </div>
@@ -128,7 +130,7 @@
                  </div>
                  <div class="sheet-ability-column-roll sheet-flex">
                    <button class="sheet-ability-button" type="roll" name="roll_st_check"
-                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=ST Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 1d20 + @{strength_mod} }} {{noadvroll=1}} {{roll1=[[ 1d20 + [[@{strength_mod}]] ]]}}"></button>
+                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=ST Check}} {{subheader=@{character_name}}} {{ability=1}} {{math=roll: 3d6 vs @{adj_st}}} {{noadvroll=1}} {{roll1=[[ 3d6 ]]}}"></button>
                  </div>
                </div>
 
@@ -204,6 +206,10 @@
 
           <div class="sheet-thick-border sheet-padding">
             <h3>Talents</h3>
+            <div class="sheet-center">
+              <span class="sheet-left-pad">Talent Cost:<span>
+              <input type="number" name="attr_total_talent_cost" class="sheet-info-name-sm sheet-inactive-color sheet-bold-font" value="0"/>
+            </div>
             <fieldset class="repeating_talents">
               <div class="sheet-block sheet-thin-border sheet-side-padding">
                   <input type="text" name="attr_talentname" class="sheet-bottom-line sheet-talent-name"/>
@@ -231,13 +237,14 @@
                     <option value="19">19</option>
                     <option value="20">20</option>
                   </select>
+                  <!--
                   <button class="sheet-talent-button" type="roll" name="roll_talent"
                           value="&{template:roll_check} {{character_name=@{character_name}}} {{title=@{talentname} Check}} {{subheader=@{character_name}}} {{talent=1}} {{math=roll: 1d20 }} {{noadvroll=1}} {{roll1=[[1d20]] }}"></button>
+                  -->
                 <textarea spellcheck="false" name="attr_talent_description" class="sheet-talent-description" data-i18n-placeholder="description"></textarea>
               </div>
            </fieldset>
-          </div>
-
+         </div>
        </div>
      </div>
    </div>
@@ -341,11 +348,17 @@
     <div class="section-languages">
        <div class="sheet-thick-border sheet-languages">
          <h3>Languages</h3>
+         <div class="sheet-center">
+           <span class="sheet-left-pad">Num Languages:<span>
+           <input type="number" name="attr_num_lang" class="sheet-info-name-sm sheet-inactive-color sheet-bold-font" value="0"/>
+         </div>
          <fieldset class="repeating_languages">
              <div class="sheet-langcontainer sheet-side-padding">
                <input type="text" name="attr_language_name" class="sheet-language-name sheet-bottom-line" data-i18n-placeholder="language name"/>
+               <!--
                <span class="left-pad">Cost:</span>
                <input type="number" name="attr_language_cost" class="sheet-info-name-sm sheet-bold-font" value="1"/>
+               -->
              </div>
          </fieldset>
        </div>
@@ -354,7 +367,10 @@
     <div class="section-magic">
       <div class="sheet-thick-border sheet-spells">
         <h3>Spellcasting</h3>
-
+        <div class="sheet-center">
+          <span class="sheet-left-pad">Num Spells:<span>
+          <input type="number" name="attr_num_spells" class="sheet-info-name-sm sheet-inactive-color sheet-bold-font" value="0"/>
+        </div>
         <div class="sheet-spell-filters sheet-flex-between">
           <span class="sheet-bold-font">Filter:</span>
           <label class="sheet-filter-button">
@@ -456,7 +472,7 @@
                       value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{spell_dice_enabled=1}} {{level=@{spell_iq}}} {{math=@{spell_dice}}} {{roll1=[[@{spell_dice}]]}} {{description=@{spelldescription}}}"></button>
             </div>
             <div class="sheet-no-dice-spell">
-              <button class="sheet-attack-button sheet-orange-border" type="roll" name="roll_cast_spell"
+              <button class="sheet-attack-button sheet-red-border" type="roll" name="roll_cast_spell"
                       value="&{template:roll_check} {{character_name=@{character_name}}} {{title=Cast @{spellname}}} {{subheader=@{character_name}}} {{spell=1}} {{level=@{spell_iq}}} }} {{description=@{spelldescription} }}"></button>
             </div>
             <textarea spellcheck="false" name="attr_spelldescription" class="sheet-spell-description" data-i18n-placeholder="description"></textarea>
@@ -677,4 +693,114 @@
     });
   });
 
+  // Talents
+  // Keep spells up to date
+  on(`change:repeating_talents remove:repeating_talents change:class` , function () {
+    getSectionIDs('repeating_talents', function (ids) {
+      const fieldnames = [];
+      ids.forEach(id => {
+        fieldnames.push('repeating_talents_' + id + '_talent_cost');
+      });
+      getAttrs([...fieldnames, 'class'], function (values) {
+        const c_class = values.class.trim();
+        const is_wizard = (c_class === 'wizard') ? 1 : 0;
+
+        settings = {};
+        var total_talent_cost = 0;
+        ids.forEach(id => {
+           const talent_cost = parseInt(values['repeating_talents_' + id + '_talent_cost']) || 0;
+           total_talent_cost += talent_cost;
+        });
+
+        settings['total_talent_cost'] = total_talent_cost;
+        setAttrs(settings);
+      });
+    });
+  });
+
+
+  // Spells
+  // Keep spells up to date
+  on(`change:repeating_spells remove:repeating_spells change:class` , function () {
+    getSectionIDs('repeating_spells', function (ids) {
+      const fieldnames = [];
+      ids.forEach(id => {
+        fieldnames.push('repeating_spells_' + id + '_is_dice_spell');
+        fieldnames.push('repeating_spells_' + id + '_spell_dice');
+      });
+      getAttrs([...fieldnames, 'class'], function (values) {
+        const c_class = values.class.trim();
+        const is_wizard = (c_class === 'wizard') ? 1 : 0;
+        const num_spells = ids.length || 0;
+
+        settings = {};
+        ids.forEach(id => {
+
+          const spell_dice = values['repeating_spells_' + id + '_spell_dice'];
+          const is_dice_enabled = (spell_dice === "") ? 0 : 1;
+
+          settings['repeating_spells_' + id + '_is_dice_spell'] = is_dice_enabled;
+
+        });
+
+        settings['num_spells'] = num_spells;
+        setAttrs(settings);
+      });
+    });
+  });
+
+  // Languages
+  on(`change:repeating_languages remove:repeating_languages` , function () {
+    getSectionIDs('repeating_languages', function (ids) {
+      const num_languages = parseInt(ids.length) || 0;
+
+      settings = {};
+      settings['num_lang'] = num_languages;
+      setAttrs(settings);
+    });
+  });
+
+  // XP for Talents, Spells, Languages
+  on(`change:total_talent_cost change:num_lang change:num_spells change:iq change:class` , function () {
+    getAttrs(['total_talent_cost', 'num_spells', 'num_lang', 'class', 'iq'], v => {
+
+      const c_class = v.class.trim();
+      const is_wizard = (c_class === 'wizard') ? 1 : 0;
+      const talent_iq_cost = parseInt(v.total_talent_cost) || 0;
+      const spell_iq_cost = parseInt(v.num_spells) || 0;
+      const lang_iq_cost = parseInt(v.num_lang) || 0;
+      const iq = parseInt(v.iq) || 0;
+
+      // calculate XP needed
+      var xp_required = 0;
+      var iq_available = iq;
+
+      // talent xp cost
+      iq_available -= talent_iq_cost;
+      if (iq_available < 0) {
+          xp_required -=  500 * iq_available;
+          iq_available = 0;
+      }
+
+      // language cost
+      iq_available -= lang_iq_cost;
+      if (iq_available < 0) {
+        xp_required -= 500 * (iq_available + 1);
+        iq_available = 0;
+      }
+
+      // spell cost
+      iq_available -= spell_iq_cost;
+      if (iq_available < 0) {
+        xp_required -= ( is_wizard ? 500 : 1500 ) * iq_available;
+        iq_available = 0;
+      }
+
+      settings = {};
+      settings['tls_iq_unspent'] = iq_available + (lang_iq_cost == 1 ? 1 : 0);
+      settings['tls_xp_cost'] = xp_required;
+      setAttrs(settings);
+
+    });
+  });
 </script>
