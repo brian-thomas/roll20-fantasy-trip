@@ -31,7 +31,15 @@
          </select>
 
          <input type="text" class="sheet-align-right sheet-info-name" name="attr_xp" value="0"/>
-         <input type="text" class="sheet-align-right inactive-color sheet-next-level-notify sheet-info-name" name="attr_xp_required" value="0" readonly="true"/>
+
+
+         <input type="checkbox" name="attr_xp_is_overspent" class="sheet-xp_is_overspent" value="1" hidden="True">
+         <div class="section-xp-ok">
+           <input type="text" class="sheet-align-right inactive-color sheet-next-level-notify sheet-info-name" name="attr_xp_required" value="0" readonly="true"/>
+         </div>
+         <div class="section-xp-not-ok">
+           <input type="text" class="sheet-align-right sheet-yellow-background sheet-next-level-notify sheet-info-name" name="attr_xp_required" value="0" readonly="true"/>
+         </div>
        </div>
 
        <div class="sheet-inline-flex sheet-bottom-padding">
@@ -62,8 +70,10 @@
             <input type="number" name="attr_iq_start" class="sheet-info-name-sm sheet-bold-font" value="8"/>
             <span class="sheet-left-pad">Unspent Pts:<span>
             <input type="number" name="attr_tls_iq_unspent" class="sheet-info-name-sm sheet-inactive-color sheet-bold-font" value="0" readonly="true"/>
+            <!--
             <span class="sheet-left-pad">XP Req:<span>
             <input type="number" name="attr_tls_xp_cost" class="sheet-info-name-sm sheet-inactive-color sheet-bold-font" value="0" readonly="true"/>
+            -->
           </div>
         </div>
 
@@ -110,8 +120,10 @@
              <div class="sheet-flex-between sheet-center sheet-bottom-padding">
                <span>Attrib Total:</span>
                <input type="number" name="attr_total_attribs" class="sheet-info-name-sm sheet-inactive-color" value="24" readonly="True"/>
+               <!--
                <span class="sheet-left-pad">XP Required:</span>
                <input type="number" name="attr_attrib_xp_spent" class="sheet-info-name sheet-inactive-color" value="8000" readonly="True"/>
+               -->
                <span>Next Attrib XP Cost:</span>
                <input type="text" class="sheet-align-right inactive-color sheet-next-level-notify sheet-info-name" name="attr_next_attrib_xp" value="0" readonly="true"/>
              </div>
@@ -210,10 +222,12 @@
 
           <div class="sheet-thick-border sheet-padding">
             <h3>Talents</h3>
+            <!--
             <div class="sheet-center">
               <span class="sheet-left-pad">Talent Cost:<span>
               <input type="number" name="attr_total_talent_cost" class="sheet-info-name-sm sheet-inactive-color sheet-bold-font" value="0"/>
             </div>
+            -->
             <fieldset class="repeating_talents">
               <div class="sheet-block sheet-thin-border sheet-side-padding">
                   <input type="text" name="attr_talentname" class="sheet-bottom-line sheet-talent-name"/>
@@ -816,12 +830,16 @@
 
   });
 
-  on(`change:tls_xp_cost change:attrib_xp_spent` , function () {
-    getAttrs(['tls_xp_cost', 'attrib_xp_spent'], v => {
+  on(`change:tls_xp_cost change:attrib_xp_spent change:xp` , function () {
+    getAttrs(['tls_xp_cost', 'attrib_xp_spent', 'xp'], v => {
+
+      const xp = parseInt(v.xp) || 0;
       const attrib_xp_cost = parseInt(v.attrib_xp_spent) || 0;
       const tls_xp_cost = parseInt(v.tls_xp_cost) || 0;
 
-      setAttrs({'xp_required': tls_xp_cost + attrib_xp_cost})
+      const xp_required = tls_xp_cost + attrib_xp_cost;
+
+      setAttrs({'xp_required': xp_required, 'xp_is_overspent': xp_required > xp ? 1 : 0})
 
     });
   });

@@ -796,6 +796,12 @@ button[type=roll].sheet-attack-button
 	background-image: none;
 }
 
+.sheet-yellow-background,
+input[type=number].sheet-yellow-background
+{
+  background-color: yellow;
+}
+
 .sheet-blue-border,
 button[type=roll].sheet-blue-border
 {
@@ -834,6 +840,16 @@ button[type=roll].sheet-yellow-border,
 input[type=number].sheet-yellow-border
 {
 	border: 2px solid yellow;
+}
+
+input.sheet-xp_is_overspent:not(:checked) ~ div.sheet-section-xp-ok
+{
+  display: block;
+}
+
+input.sheet-xp_is_overspent:checked ~ div.sheet-section-xp-not-ok
+{
+  display: block;
 }
 
 div.sheet-press_attack_section,
